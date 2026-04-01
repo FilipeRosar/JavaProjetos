@@ -19,7 +19,6 @@ public class User {
     private String password;
     @Column(name = "email")
     private String email;
-
     @CreationTimestamp
     private Instant createdDate;
 

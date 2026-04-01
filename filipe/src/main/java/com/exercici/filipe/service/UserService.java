@@ -3,6 +3,7 @@ package com.exercici.filipe.service;
 import com.exercici.filipe.controller.CreateUserDto;
 import com.exercici.filipe.entity.User;
 import com.exercici.filipe.repository.IUserRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -17,7 +18,7 @@ public class UserService {
         _userRepository = userRepository;
     }
 
-    public  UUID createUser(CreateUserDto createUserDto) {
+    public  UUID createUser( CreateUserDto createUserDto) {
 
         var entity = new User(UUID.randomUUID(),
                 createUserDto.username(),
@@ -28,5 +29,9 @@ public class UserService {
        var userSaved =  _userRepository.save(entity);
 
        return userSaved.getUserId();
+    }
+    public User getUser(UUID id){
+        var entity = _userRepository.findById(id);
+        return entity.get();
     }
 }
