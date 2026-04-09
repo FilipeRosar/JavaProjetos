@@ -10,8 +10,7 @@ public class Professor {
     private String registro;
     private Date dataNascimento;
 
-    public Professor(UUID id, String nome, String telefone, String registro, Date dataNascimento) {
-        this.id = id;
+    public Professor( String nome, String telefone, String registro, Date dataNascimento) {
         this.nome = nome;
         this.telefone = telefone;
         this.registro = registro;
