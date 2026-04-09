@@ -11,19 +11,24 @@ import java.net.URI;
 @RequestMapping("v1/users")
 public class UserController {
 
-    private UserService userService;
+    private final UserService _userService;
 
     public UserController(UserService userService) {
-        this.userService = userService;
+        _userService = userService;
     }
 
     @PostMapping
     public ResponseEntity<User> CreateUser(@RequestBody CreateUserDto createUserDto) {
-        var userId = userService.createUser(createUserDto);
+        var userId = _userService.createUser(createUserDto);
         return  ResponseEntity.created(URI.create("/v1/users/" + userId.toString())).build();
     }
     @GetMapping("/{userId}")
-    public  ResponseEntity<User> GetUser(@PathVariable String userId) {
-        return  null;
+    public  ResponseEntity<User> getUserById(@PathVariable("userId") String userId) {
+        var  user = _userService.getUserById(userId);
+
+        return user
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity
+                        .notFound().build());
     }
 }

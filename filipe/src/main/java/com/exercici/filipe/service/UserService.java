@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -20,7 +21,7 @@ public class UserService {
 
     public  UUID createUser( CreateUserDto createUserDto) {
 
-        var entity = new User(UUID.randomUUID(),
+        var entity = new User(
                 createUserDto.username(),
                 createUserDto.email(),
                 createUserDto.password(),
@@ -34,4 +35,9 @@ public class UserService {
         var entity = _userRepository.findById(id);
         return entity.get();
     }
-}
+    public Optional<User> getUserById(String userId) {
+        var user = _userRepository.findById(UUID.fromString(userId));
+        return  user.stream().findFirst();
+        }
+    }
+
