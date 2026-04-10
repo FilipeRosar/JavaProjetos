@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("v1/users")
@@ -30,5 +31,25 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity
                         .notFound().build());
+    }
+    @GetMapping
+    public ResponseEntity<List<User>> listUsers() {
+        var users = _userService.getAllUsers();
+
+        return ResponseEntity.ok(users);
+    }
+
+    @PutMapping("/{userId}")
+    public ResponseEntity<Void> updateUserById(@PathVariable("userId") String userId,
+                                               @RequestBody UpdateUserDto updateUserDto) {
+        _userService.updateUserById(userId, updateUserDto);
+        return   ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{userId}")
+    public  ResponseEntity<Void> deleteUserById(@PathVariable("userId") String userId) {
+        _userService.deleteById(userId);
+
+        return ResponseEntity.noContent().build();
     }
 }

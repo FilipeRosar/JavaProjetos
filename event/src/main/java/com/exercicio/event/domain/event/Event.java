@@ -1,11 +1,7 @@
 package com.exercicio.event.domain.event;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,10 +20,17 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @Column(name = "title", nullable = false)
     private String title;
+    @Column(name = "description")
     private String description;
+    @Column(name = "img_url")
     private String imgurl;
+    @Column(name = "event_url")
     private String eventUrl;
+    @Column(name = "remote")
     private  Boolean remote;
+    @Column(name = "date")
     private Date date;
 }
