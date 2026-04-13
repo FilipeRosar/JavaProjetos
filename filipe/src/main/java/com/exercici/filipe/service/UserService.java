@@ -5,7 +5,9 @@ import com.exercici.filipe.controller.UpdateUserDto;
 import com.exercici.filipe.entity.User;
 import com.exercici.filipe.repository.IUserRepository;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PutMapping;
 
@@ -19,16 +21,21 @@ public class UserService {
 
     private IUserRepository _userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public UserService(IUserRepository userRepository) {
         _userRepository = userRepository;
     }
 
     public  UUID createUser( CreateUserDto createUserDto) {
 
+        String passwordHash = passwordEncoder.encode(createUserDto.password());
+
         var entity = new User(
                 createUserDto.username(),
                 createUserDto.email(),
-                createUserDto.password(),
+                passwordHash,
                 Instant.now(),
                 null);
        var userSaved =  _userRepository.save(entity);
