@@ -1,4 +1,4 @@
-package com.exercici.filipe.entity;
+package com.exercici.filipe.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -8,12 +8,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 @Getter
 @Setter
 @Entity
 @Table(name = "tb_users")
-public class User {
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID userId;
@@ -28,17 +29,14 @@ public class User {
     private String email;
 
     @CreationTimestamp
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "America/Sao_Paulo")
-    private Instant createdDate;
+    private OffsetDateTime createdDate;
 
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "America/Sao_Paulo")
     @UpdateTimestamp
-    private Instant modifiedDate;
+    private OffsetDateTime modifiedDate;
 
     public User() {
     }
-    public User( String username, String email, String password, Instant createdDate, Instant modifiedDate) {
+    public User( String username, String email, String password, OffsetDateTime createdDate, OffsetDateTime modifiedDate) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -47,4 +45,6 @@ public class User {
     }
 
 
+    public User(String username, String email, String passwordHash, Instant now, Object modifiedDate) {
+    }
 }

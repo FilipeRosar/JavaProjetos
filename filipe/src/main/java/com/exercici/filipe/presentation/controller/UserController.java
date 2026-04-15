@@ -1,7 +1,9 @@
-package com.exercici.filipe.controller;
+package com.exercici.filipe.presentation.controller;
 
-import com.exercici.filipe.entity.User;
-import com.exercici.filipe.service.UserService;
+import com.exercici.filipe.application.dto.CreateUserDto;
+import com.exercici.filipe.application.dto.UpdateUserDto;
+import com.exercici.filipe.domain.entity.User;
+import com.exercici.filipe.domain.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

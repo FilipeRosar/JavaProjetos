@@ -1,4 +1,4 @@
-package com.exercici.filipe.service;
+package com.exercici.filipe.domain.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,15 +1,12 @@
-package com.exercici.filipe.service;
+package com.exercici.filipe.domain.service;
 
-import com.exercici.filipe.controller.CreateUserDto;
-import com.exercici.filipe.controller.UpdateUserDto;
-import com.exercici.filipe.entity.User;
-import com.exercici.filipe.repository.IUserRepository;
-import org.jetbrains.annotations.NotNull;
+import com.exercici.filipe.application.dto.CreateUserDto;
+import com.exercici.filipe.application.dto.UpdateUserDto;
+import com.exercici.filipe.domain.entity.User;
+import com.exercici.filipe.domain.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import java.time.Instant;
 import java.util.List;

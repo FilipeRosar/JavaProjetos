@@ -1,7 +1,6 @@
-package com.exercici.filipe.repository;
+package com.exercici.filipe.domain.repository;
 
-import com.exercici.filipe.controller.CreateUserDto;
-import com.exercici.filipe.entity.User;
+import com.exercici.filipe.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
