@@ -1,6 +1,6 @@
 package com.exercicio.alunos.controller;
 
-
+import com.exercicio.alunos.exception.GlobalExceptionHandler;
 import com.exercicio.alunos.controller.dto.UpdateAlunoDTO;
 import com.exercicio.alunos.model.Aluno;
 import com.exercicio.alunos.controller.dto.CreateAlunoDTO;
@@ -22,10 +22,19 @@ public class AlunoController {
 
     @PostMapping
     public ResponseEntity<Aluno> CreateAluno (@RequestBody CreateAlunoDTO dto){
-        var alunoId = _alunoService.createAluno(dto);
 
-        return ResponseEntity.created(URI.create("/v1/alunos/" + alunoId.toString())).build();
+        try {
+            var alunoId = _alunoService.createAluno(dto);
+
+            return ResponseEntity.created(URI.create("/v1/alunos/" + alunoId.toString())).build();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+
     }
+
     @GetMapping("/{alunoId}")
     public ResponseEntity<Aluno> getUserById (@PathVariable("alunoId") String alunoId){
         var aluno = _alunoService.getUserById(alunoId);
@@ -41,16 +50,18 @@ public class AlunoController {
     @PutMapping("/{alunoId}")
     public ResponseEntity<Void> updateAluno(@PathVariable("alunoId") String alunoId,
                                             @RequestBody UpdateAlunoDTO dto){
+
         _alunoService.updateAluno(alunoId,dto);
         return  ResponseEntity.noContent().build();
     }
 
-
+    @ExceptionHandler
     @DeleteMapping("/{alunoId}")
     public ResponseEntity<Void> deleteUserById(@PathVariable("alunoId") String alunoId){
-        _alunoService.deleteById(alunoId);
+            _alunoService.deleteById(alunoId);
 
-        return ResponseEntity.noContent().build();
+            return ResponseEntity.noContent().build();
+
     }
 
 }

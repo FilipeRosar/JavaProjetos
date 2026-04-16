@@ -1,5 +1,6 @@
 package com.exercicio.alunos.model;
 
+import com.exercicio.alunos.model.enume.Sex;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Generated;
@@ -17,10 +18,7 @@ import java.util.UUID;
 @Getter
 @Table
 @Entity
-public class Aluno {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class Aluno extends BaseEntity {
 
     @Column(name = "name")
     private String name;
@@ -37,28 +35,32 @@ public class Aluno {
     @Column(name = "password")
     private String password;
 
-    @CreationTimestamp
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "America/Sao_Paulo")
-    private Instant createdAt;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "America/Sao_Paulo")
-    @UpdateTimestamp
-    private Instant updatedAt;
-
     @Column(name = "curso")
     private String curso;
 
+    @Column(name = "telefone")
+    private String telefone;
+
+    private boolean isActive;
+
+    @Column(name = "sexo")
+    private Sex sex;
+
     public Aluno() {
+        super();
     }
 
-    public Aluno(String name, Date dataNascimento, String email, String password, Instant createdAt, Instant updatedAt, String curso) {
+
+    public Aluno( String name, String matricula, Date dataNascimento, String email, String password, String curso, String telefone, Sex sex) {
+        super(createdAt, updatedAt);
         this.name = name;
+        this.matricula = matricula;
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.password = password;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
         this.curso = curso;
+        this.telefone = telefone;
+        this.sex = sex;
     }
 
 }

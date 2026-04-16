@@ -35,8 +35,8 @@ public class AlunoService {
                 dto.dataNascimento(),
                 dto.email(),
                 hash,
-                Instant.now(),
-                null,
+                dto.sexo(),
+                dto.telefone(),
                 dto.curso());
 
         var savedEntity = _alunoRepository.save(entity);
@@ -44,6 +44,7 @@ public class AlunoService {
         return savedEntity.getId();
     }
     public Optional<Aluno> getUserById(String id){
+
         var entity = _alunoRepository.findById(UUID.fromString(id));
         return entity.stream().findFirst();
     }
