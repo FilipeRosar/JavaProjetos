@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,8 +20,9 @@ public class Books {
     private String title;
     private String author;
     private Date publishedAt;
-    private Double price;
-    private int quantity;
+    private String publisher;
+    private BigDecimal price;
+    private Integer stock;
     private boolean isAvailable;
-
+    private String ISBN;
 }

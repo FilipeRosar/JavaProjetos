@@ -2,6 +2,7 @@ package com.livraria.books_on.domain.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,9 @@ public class Client {
     private UUID id;
     private String name;
     private String cpf;
+    @Email
+    private String email;
+    private String password;
     private LocalDate dataAlugado;
     @OneToMany(mappedBy = "bookId")
     private List<Books> books;
