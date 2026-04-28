@@ -30,34 +30,39 @@ public class BookService {
         book.setStock(dto.stock());
         return _bookResitory.save(book).getBookId();
     }
-    public Optional<Books> getBookById(String id){
+    public Optional<Books> getBookById(UUID id){
 
-        var book = _bookResitory.findById(UUID.fromString(id));
+        var book = _bookResitory.findById(id);
         return book.stream().findFirst();
     }
     public List<Books> getAllBooks(){
+
         return _bookResitory.findAll();
     }
     public void updateBook(String bookId, UpdateBookDto dto){
         var id = UUID.fromString(bookId);
-
         var entityBook = _bookResitory.findById(id);
 
-        if(entityBook.isPresent()){
-            var book = entityBook.get();
-            if (dto.title() != null) {
-                book.setTitle(dto.title());
+        try {
+
+            if(entityBook.isPresent()){
+                var book = entityBook.get();
+                if (dto.title() != null) {
+                    book.setTitle(dto.title());
+                }
+                if (dto.stock() != null){
+                    book.setStock(dto.stock());
+                }
+                if (dto.price() != null){
+                    book.setPrice(dto.price());
+                }
+                if (dto.author() != null){
+                    book.setAuthor(dto.author());
+                }
+                _bookResitory.save(book);
             }
-            if (dto.stock() != null){
-                book.setStock(dto.stock());
-            }
-            if (dto.price() != null){
-                book.setPrice(dto.price());
-            }
-            if (dto.author() != null){
-                book.setAuthor(dto.author());
-            }
-            _bookResitory.save(book);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
 
     }
