@@ -1,14 +1,17 @@
 package com.livraria.books_on.application.controller;
 
 import com.livraria.books_on.domain.dto.CreateBookDto;
+import com.livraria.books_on.domain.dto.UpdateBookDto;
 import com.livraria.books_on.domain.entity.Books;
 import com.livraria.books_on.service.BookService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
@@ -41,4 +44,15 @@ public class BookController {
          return ResponseEntity.noContent().build();
 
     }
+    @PutMapping(value = "/{bookId}")
+    public ResponseEntity<Void> updateBookById(@PathVariable UUID id, @RequestBody UpdateBookDto dto){
+        var book = _bookService.getBookById(id);
+
+        if (book == null) {
+            return ResponseEntity.notFound().build();
+        }
+        
+
+    }
+
 }
