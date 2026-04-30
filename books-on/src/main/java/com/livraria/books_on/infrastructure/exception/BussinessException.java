@@ -1,4 +1,4 @@
-package com.livraria.books_on.exception;
+package com.livraria.books_on.infrastructure.exception;
 
 
 

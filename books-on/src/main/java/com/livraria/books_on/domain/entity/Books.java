@@ -18,9 +18,13 @@ public class Books {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID bookId;
     private String title;
-    private String author;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
     private Date publishedAt;
-    private String publisher;
+    @ManyToOne
+    @JoinColumn(name = "pushisher_id")
+    private Publisher publisher;
     private BigDecimal price;
     private Integer stock;
     private boolean isAvailable;

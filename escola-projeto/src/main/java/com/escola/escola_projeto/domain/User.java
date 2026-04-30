@@ -19,7 +19,11 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "student_id")
     private Student student;
+
+    @OneToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 }

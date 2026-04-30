@@ -1,13 +1,23 @@
 services:
   mongodb:
-    image: mongo
+    image: mongo:latest
+    container_name: local-mongodb-
     ports:
-      - 27017:27017
+      - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=123
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 123
+    volumes:
+      - mongodb_data:/data/db
+
   rabbitmq:
     image: rabbitmq:3.13-management
+    container_name: local-rabbitmq-1
     ports:
-      - 15672:15672
-      - 5672:5672
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+volumes:
+  mongodb_data:

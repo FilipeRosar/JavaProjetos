@@ -22,9 +22,9 @@ public class OrderCreatedListener {
     }
 
     @RabbitListener(queues = ORDER_CREATED_QUEUE)
-    public void listen(OrderCreatedEvent event) {
-        log.info("Message received : {}", event);
+    public void listen(Message<OrderCreatedEvent> message) {
+        log.info("Message received : {}", message);
 
-        _orderService.save(event);
+        _orderService.save(message.getPayload());
     }
 }
