@@ -18,8 +18,8 @@ import java.util.UUID;
 public class BookService {
     @Autowired
     private BookRepository _bookResitory;
-    @Bean
-    public UUID createBook(@NotNull CreateBookDto dto){
+
+    public UUID createBook(CreateBookDto dto){
         Books book = new Books();
 
         book.setAuthor(dto.author());
@@ -39,33 +39,25 @@ public class BookService {
 
         return _bookResitory.findAll();
     }
-    public void updateBook(String bookId, UpdateBookDto dto){
-        var id = UUID.fromString(bookId);
-        var entityBook = _bookResitory.findById(id);
+    public void updateBook(UUID bookId, UpdateBookDto dto){
+        var entityBook = _bookResitory.findById(bookId)
+                .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
 
-        try {
-
-            if(entityBook.isPresent()){
-                var book = entityBook.get();
                 if (dto.title() != null) {
-                    book.setTitle(dto.title());
+                    entityBook.setTitle(dto.title());
                 }
                 if (dto.stock() != null){
-                    book.setStock(dto.stock());
+                    entityBook.setStock(dto.stock());
                 }
                 if (dto.price() != null){
-                    book.setPrice(dto.price());
+                    entityBook.setPrice(dto.price());
                 }
                 if (dto.author() != null){
-                    book.setAuthor(dto.author());
+                    entityBook.setAuthor(dto.author());
                 }
-                _bookResitory.save(book);
-            }
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+                _bookResitory.save(entityBook);
         }
 
-    }
     public void deleteById(UUID id){
         if (id == null) {
             throw new BussinessException("O id não pode ser nulo");

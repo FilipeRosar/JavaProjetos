@@ -25,4 +25,6 @@ public class Books {
     private Integer stock;
     private boolean isAvailable;
     private String ISBN;
+
+
 }

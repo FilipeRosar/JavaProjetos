@@ -21,7 +21,6 @@ public class Client {
     private UUID id;
     private String name;
     private String cpf;
-    @Email
     private String email;
     private String password;
     private LocalDate dataAlugado;
