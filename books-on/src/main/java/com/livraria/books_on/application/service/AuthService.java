@@ -1,7 +1,7 @@
 package com.livraria.books_on.application.service;
 
 
-import com.livraria.books_on.application.dto.authDTOs.LoginDto;
+import com.livraria.books_on.domain.dto.authDTOs.LoginDto;
 import com.livraria.books_on.domain.repository.UserRepository;
 import com.livraria.books_on.infrastructure.exception.BussinessException;
 import org.springframework.security.crypto.password.PasswordEncoder;

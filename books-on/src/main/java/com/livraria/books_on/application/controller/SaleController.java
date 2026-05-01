@@ -1,8 +1,7 @@
-package com.livraria.books_on.web.controller;
+package com.livraria.books_on.application.controller;
 
-import com.livraria.books_on.application.dto.SalesDTOs.CreateSaleRequestDto;
+import com.livraria.books_on.domain.dto.SalesDTOs.CreateSaleRequestDto;
 import com.livraria.books_on.application.service.SaleService;
-import com.livraria.books_on.domain.entity.Sale;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

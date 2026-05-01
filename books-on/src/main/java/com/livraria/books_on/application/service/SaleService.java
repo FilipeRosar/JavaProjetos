@@ -1,10 +1,10 @@
 package com.livraria.books_on.application.service;
 
 
-import com.livraria.books_on.application.dto.SaleItemRequestDto;
-import com.livraria.books_on.application.dto.SalesDTOs.CreateSaleRequestDto;
-import com.livraria.books_on.application.dto.SalesDTOs.SaleItemResponseDto;
-import com.livraria.books_on.application.dto.SalesDTOs.SaleResponseDto;
+import com.livraria.books_on.domain.dto.SaleItemRequestDto;
+import com.livraria.books_on.domain.dto.SalesDTOs.CreateSaleRequestDto;
+import com.livraria.books_on.domain.dto.SalesDTOs.SaleItemResponseDto;
+import com.livraria.books_on.domain.dto.SalesDTOs.SaleResponseDto;
 import com.livraria.books_on.domain.entity.Books;
 import com.livraria.books_on.domain.entity.Sale;
 import com.livraria.books_on.domain.entity.SaleItem;

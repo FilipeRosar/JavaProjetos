@@ -2,6 +2,7 @@ package com.livraria.books_on.domain.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.UUID;
 
+@Builder
 @Entity
 @Table(name = "tb_books")
 @Getter

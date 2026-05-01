@@ -1,4 +1,4 @@
-package com.livraria.books_on.application.dto.authDTOs;
+package com.livraria.books_on.domain.dto.authDTOs;
 
 import jakarta.validation.constraints.Email;
 

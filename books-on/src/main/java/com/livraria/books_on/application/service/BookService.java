@@ -1,14 +1,12 @@
 package com.livraria.books_on.application.service;
 
-import com.livraria.books_on.application.dto.CreateBookDto;
-import com.livraria.books_on.application.dto.UpdateBookDto;
+import com.livraria.books_on.domain.dto.UpdateBookDto;
+import com.livraria.books_on.domain.dto.CreateBookDto;
 import com.livraria.books_on.domain.entity.Books;
 import com.livraria.books_on.domain.repository.AuthorRepository;
 import com.livraria.books_on.domain.repository.PublisherRepository;
 import com.livraria.books_on.infrastructure.exception.BussinessException;
 import com.livraria.books_on.domain.repository.BookRepository;
-import jakarta.validation.constraints.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +26,7 @@ public class BookService {
         _bookResitory = bookResitory;
     }
 
-    public UUID createBook(@NotNull CreateBookDto dto){
+    public UUID createBook(CreateBookDto dto){
         var author = _authorResitory.findById(dto.authorId())
                 .orElseThrow(() -> new BussinessException("Autor não encontrado"));
         var publisher = _pushisherResitory.findById(dto.publisherId())
@@ -52,6 +50,7 @@ public class BookService {
     public List<Books> getAllBooks(){
         return _bookResitory.findAll();
     }
+
     public void updateBook(UUID bookId, UpdateBookDto dto){
         var id = bookId;
 

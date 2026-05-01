@@ -1,4 +1,4 @@
-package com.livraria.books_on.application.dto;
+package com.livraria.books_on.domain.dto;
 
 import java.util.UUID;
 

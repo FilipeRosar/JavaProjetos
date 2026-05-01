@@ -1,6 +1,6 @@
-package com.livraria.books_on.application.dto.SalesDTOs;
+package com.livraria.books_on.domain.dto.SalesDTOs;
 
-import com.livraria.books_on.application.dto.SaleItemRequestDto;
+import com.livraria.books_on.domain.dto.SaleItemRequestDto;
 
 import java.util.List;
 import java.util.UUID;

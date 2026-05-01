@@ -1,7 +1,7 @@
-package com.livraria.books_on.web.controller;
+package com.livraria.books_on.application.controller;
 
-import com.livraria.books_on.application.dto.authDTOs.AuthResponseDto;
-import com.livraria.books_on.application.dto.authDTOs.LoginDto;
+import com.livraria.books_on.domain.dto.authDTOs.AuthResponseDto;
+import com.livraria.books_on.domain.dto.authDTOs.LoginDto;
 import com.livraria.books_on.application.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
