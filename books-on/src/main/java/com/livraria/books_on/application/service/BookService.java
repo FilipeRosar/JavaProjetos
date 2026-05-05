@@ -53,9 +53,9 @@ public class BookService {
         return _bookResitory.findAll();
     }
     public void updateBook(UUID bookId, UpdateBookDto dto){
-        var id = bookId;
 
-        var entityBook = _bookResitory.findById(id)
+
+        var entityBook = _bookResitory.findById(bookId)
                 .orElseThrow(() -> new BussinessException("Livro não encontrado"));
 
         if (dto.title() != null){
@@ -71,18 +71,17 @@ public class BookService {
             _bookResitory.save(entityBook);
         }
 
-    public void deleteById(String bookId){
+    public void deleteById(UUID bookId){
         if (bookId == null) {
             throw new BussinessException("O id não pode ser nulo");
         }
 
-        var id = UUID.fromString(bookId);
 
-        if (!_bookResitory.existsById(id)) {
+        if (!_bookResitory.existsById(bookId)) {
             throw new BussinessException("Livro não encontrado");
         }
-        _bookResitory.deleteById(id);
+        _bookResitory.deleteById(bookId);
 
     }
-    }
+}
 

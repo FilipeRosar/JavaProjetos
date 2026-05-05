@@ -1,9 +1,9 @@
-package com.livraria.books_on.repository;
+package com.livraria.books_on.domain.repository;
 
-import com.livraria.books_on.domain.entity.Client;
+import com.livraria.books_on.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface ClientRepository extends JpaRepository<Client, UUID> {
+public interface ClientRepository extends JpaRepository<User, UUID> {
 }

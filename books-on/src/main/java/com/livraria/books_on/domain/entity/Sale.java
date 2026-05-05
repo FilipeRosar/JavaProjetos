@@ -13,8 +13,6 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_sale")
-@Getter
-@Setter
 public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -29,4 +27,44 @@ public class Sale {
 
     @OneToMany(mappedBy = "sale",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SaleItem> items;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<SaleItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<SaleItem> items) {
+        this.items = items;
+    }
 }

@@ -17,8 +17,8 @@ public class JwtService {
     @Value("${JWT.SECRET}")
     private String SECRET;
 
-    @Value("${JWT.EXIPIRATION}")
-    private long EXIPIRATION;
+    @Value("${JWT.EXPIRATION}")
+    private long EXPIRATION;
 
     private Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
@@ -30,7 +30,7 @@ public class JwtService {
                 .setSubject(user.getEmail())
                 .claim("role", user.getRole().name())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXIPIRATION))
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

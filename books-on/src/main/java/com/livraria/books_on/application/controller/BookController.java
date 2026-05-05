@@ -1,10 +1,9 @@
 package com.livraria.books_on.application.controller;
 
-import com.livraria.books_on.domain.dto.CreateBookDto;
-import com.livraria.books_on.domain.dto.UpdateBookDto;
+import com.livraria.books_on.application.dto.CreateBookDto;
+import com.livraria.books_on.application.dto.UpdateBookDto;
 import com.livraria.books_on.domain.entity.Books;
-import com.livraria.books_on.service.BookService;
-import jakarta.validation.Valid;
+import com.livraria.books_on.application.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
