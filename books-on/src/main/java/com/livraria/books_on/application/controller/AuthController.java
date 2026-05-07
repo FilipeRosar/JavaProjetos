@@ -1,13 +1,8 @@
 package com.livraria.books_on.application.controller;
 
-<<<<<<< HEAD
-import com.livraria.books_on.application.dto.authDTOs.AuthResponseDto;
 import com.livraria.books_on.application.dto.authDTOs.CreateUserDto;
-import com.livraria.books_on.application.dto.authDTOs.LoginDto;
-=======
 import com.livraria.books_on.domain.dto.authDTOs.AuthResponseDto;
 import com.livraria.books_on.domain.dto.authDTOs.LoginDto;
->>>>>>> fda9d4ff272f6b1789688d3e8de223555d402010
 import com.livraria.books_on.application.service.AuthService;
 import com.livraria.books_on.application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

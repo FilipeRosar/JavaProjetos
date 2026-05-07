@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-package com.livraria.books_on.application.controller.controller;
-=======
 package com.livraria.books_on.application.controller;
->>>>>>> fda9d4ff272f6b1789688d3e8de223555d402010
 
 import com.livraria.books_on.domain.dto.SalesDTOs.CreateSaleRequestDto;
 import com.livraria.books_on.application.service.SaleService;
@@ -18,6 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SaleController {
     private final SaleService saleService;
+
+
+    public SaleController(SaleService saleService) {
+        this.saleService = saleService;
+    }
 
     @PostMapping
     public ResponseEntity<?> addSale(@RequestBody CreateSaleRequestDto dto){
