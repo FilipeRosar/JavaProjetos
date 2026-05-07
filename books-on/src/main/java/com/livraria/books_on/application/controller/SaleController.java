@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 package com.livraria.books_on.application.controller.controller;
+=======
+package com.livraria.books_on.application.controller;
+>>>>>>> fda9d4ff272f6b1789688d3e8de223555d402010
 
-import com.livraria.books_on.application.dto.SalesDTOs.CreateSaleRequestDto;
+import com.livraria.books_on.domain.dto.SalesDTOs.CreateSaleRequestDto;
 import com.livraria.books_on.application.service.SaleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

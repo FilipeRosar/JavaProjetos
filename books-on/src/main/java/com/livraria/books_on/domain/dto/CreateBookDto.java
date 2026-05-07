@@ -1,13 +1,11 @@
-package com.livraria.books_on.application.dto;
+package com.livraria.books_on.domain.dto;
 
 import com.livraria.books_on.domain.entity.Author;
 import com.livraria.books_on.domain.entity.Publisher;
-import lombok.Builder;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Builder
 public record CreateBookDto(String ISBN,
                             String title,
                             UUID authorId,
