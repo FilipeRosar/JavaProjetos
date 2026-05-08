@@ -9,30 +9,44 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.UUID;
-<<<<<<< HEAD
-
-=======
->>>>>>> fda9d4ff272f6b1789688d3e8de223555d402010
 import jakarta.persistence.*;
 import java.util.List;
 
 
 @Entity
 @Table(name = "tb_author")
-@Getter
-@Setter
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
-<<<<<<< HEAD
-    @OneToMany(mappedBy = "author")
-    private List<Books> books;
-=======
+
 
     @OneToMany(mappedBy = "author")
-    private List<Books> books;
+    private List<Book> books;
 
->>>>>>> fda9d4ff272f6b1789688d3e8de223555d402010
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 }

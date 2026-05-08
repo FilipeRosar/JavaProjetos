@@ -5,7 +5,7 @@ import com.livraria.books_on.domain.dto.SaleItemRequestDto;
 import com.livraria.books_on.domain.dto.SalesDTOs.CreateSaleRequestDto;
 import com.livraria.books_on.domain.dto.SalesDTOs.SaleItemResponseDto;
 import com.livraria.books_on.domain.dto.SalesDTOs.SaleResponseDto;
-import com.livraria.books_on.domain.entity.Books;
+import com.livraria.books_on.domain.entity.Book;
 import com.livraria.books_on.domain.entity.Sale;
 import com.livraria.books_on.domain.entity.SaleItem;
 import com.livraria.books_on.domain.entity.User;
@@ -42,7 +42,7 @@ public class SaleService {
         BigDecimal total =  BigDecimal.ZERO;
 
         for (SaleItemRequestDto itemDto : dto.items()){
-            Books book = _bookRepository.findById(itemDto.bookId())
+            Book book = _bookRepository.findById(itemDto.bookId())
                     .orElseThrow(() -> new BussinessException("Livro não encontrado"));
 
             if (book.getStock() < itemDto.quantity()){
@@ -90,7 +90,7 @@ public class SaleService {
                 .orElseThrow(() -> new BussinessException("Venda não encontrada"));
 
         for (SaleItem item : sale.getItems()) {
-            Books books = item.getBook();
+            Book books = item.getBook();
             books.setStock(books.getStock() + item.getQuantity());
             books.setAvailable(true);
             _bookRepository.save(books);

@@ -9,8 +9,6 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_publisher")
-@Getter
-@Setter
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -18,5 +16,29 @@ public class Publisher {
     private String name;
 
     @OneToMany(mappedBy = "publisher")
-    private List<Books> books;
+    private List<Book> books;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 }

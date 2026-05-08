@@ -2,7 +2,6 @@ package com.livraria.books_on.application.controller;
 
 import com.livraria.books_on.domain.dto.SalesDTOs.CreateSaleRequestDto;
 import com.livraria.books_on.application.service.SaleService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,10 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/sales")
-@RequiredArgsConstructor
 public class SaleController {
-    private final SaleService saleService;
 
+    private final SaleService saleService;
 
     public SaleController(SaleService saleService) {
         this.saleService = saleService;

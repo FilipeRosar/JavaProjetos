@@ -17,7 +17,7 @@ public class SaleItem {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Books book;
+    private Book book;
 
     private Integer quantity;
     private BigDecimal price;
@@ -33,11 +33,11 @@ public class SaleItem {
         this.id = id;
     }
 
-    public Books getBook() {
+    public Book getBook() {
         return book;
     }
 
-    public void setBook(Books book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 

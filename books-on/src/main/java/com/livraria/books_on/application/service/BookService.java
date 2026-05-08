@@ -2,7 +2,7 @@ package com.livraria.books_on.application.service;
 
 import com.livraria.books_on.domain.dto.UpdateBookDto;
 import com.livraria.books_on.domain.dto.CreateBookDto;
-import com.livraria.books_on.domain.entity.Books;
+import com.livraria.books_on.domain.entity.Book;
 import com.livraria.books_on.domain.repository.AuthorRepository;
 import com.livraria.books_on.domain.repository.PublisherRepository;
 import com.livraria.books_on.infrastructure.exception.BussinessException;
@@ -32,7 +32,7 @@ public class BookService {
         var publisher = _pushisherResitory.findById(dto.publisherId())
                 .orElseThrow(() -> new BussinessException("Editora não encontrada"));
 
-        Books book = new Books();
+        Book book = new Book();
         book.setAuthor(author);
         book.setPublisher(publisher);
         book.setISBN(dto.ISBN());
@@ -43,16 +43,15 @@ public class BookService {
 
         return _bookResitory.save(book).getBookId();
     }
-    public Optional<Books> getBookById(UUID id){
+    public Optional<Book> getBookById(UUID id){
 
         return _bookResitory.findById(id);
     }
-    public List<Books> getAllBooks(){
+    public List<Book> getAllBooks(){
         return _bookResitory.findAll();
     }
 
     public void updateBook(UUID bookId, UpdateBookDto dto){
-
 
         var entityBook = _bookResitory.findById(bookId)
                 .orElseThrow(() -> new BussinessException("Livro não encontrado"));

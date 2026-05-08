@@ -2,7 +2,7 @@ package com.livraria.books_on.application.controller;
 
 import com.livraria.books_on.domain.dto.CreateBookDto;
 import com.livraria.books_on.domain.dto.UpdateBookDto;
-import com.livraria.books_on.domain.entity.Books;
+import com.livraria.books_on.domain.entity.Book;
 import com.livraria.books_on.application.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,26 +21,26 @@ public class BookController {
 
 
     @GetMapping("/{bookId}")
-    public ResponseEntity<Books> getBookById(UUID id) {
-        var bookId = _bookService.getBookById(id);
-        return ResponseEntity.of(bookId);
+    public ResponseEntity<Book> getBookById(@PathVariable UUID bookId) {
+        var id = _bookService.getBookById(bookId);
+        return ResponseEntity.of(id);
     }
 
     @GetMapping
-    public ResponseEntity<List<Books>> getAllBooks() {
+    public ResponseEntity<List<Book>> getAllBooks() {
         var books = _bookService.getAllBooks();
         return ResponseEntity.ok(books);
     }
 
     @PostMapping
-    public ResponseEntity<Books> createBooks(@RequestBody CreateBookDto dto) {
+    public ResponseEntity<Book> createBooks(@RequestBody CreateBookDto dto) {
         var bookId = _bookService.createBook(dto);
         return ResponseEntity.created(URI.create("v1/books/" + bookId.toString())).build();
     }
 
     @DeleteMapping("/{bookId}")
-    public ResponseEntity<Void> deleteBookById(UUID id) {
-        _bookService.deleteById(id);
+    public ResponseEntity<Void> deleteBookById(@PathVariable UUID bookId) {
+        _bookService.deleteById(bookId);
         return ResponseEntity.noContent().build();
 
     }
