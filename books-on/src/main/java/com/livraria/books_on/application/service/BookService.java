@@ -7,6 +7,8 @@ import com.livraria.books_on.domain.repository.AuthorRepository;
 import com.livraria.books_on.domain.repository.PublisherRepository;
 import com.livraria.books_on.infrastructure.exception.BussinessException;
 import com.livraria.books_on.domain.repository.BookRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public class BookService {
         _pushisherResitory = pushisherResitory;
         _bookResitory = bookResitory;
     }
-
+    @CacheEvict(value = "products", allEntries = true)
     public UUID createBook(CreateBookDto dto){
         var author = _authorResitory.findById(dto.authorId())
                 .orElseThrow(() -> new BussinessException("Autor não encontrado"));
@@ -43,11 +45,16 @@ public class BookService {
 
         return _bookResitory.save(book).getBookId();
     }
+
+    @Cacheable(value = "product", key = "#id")
     public Optional<Book> getBookById(UUID id){
 
         return _bookResitory.findById(id);
     }
+    @Cacheable(value = "products")
     public List<Book> getAllBooks(){
+        System.out.println("Buscando todos os livros");
+
         return _bookResitory.findAll();
     }
 

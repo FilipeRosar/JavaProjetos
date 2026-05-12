@@ -37,7 +37,7 @@ public class SecurityConfig {
                                 "/swagger-ui.html",
                                 "/auth/**",
                                 "/v1/author/**",
-                                "/publisher/**",
+                                "/v1/publisher/**",
                                 "/book/**")
                         .permitAll()
                         .anyRequest()
