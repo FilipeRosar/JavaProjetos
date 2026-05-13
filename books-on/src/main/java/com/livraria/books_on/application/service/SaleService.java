@@ -49,7 +49,7 @@ public class SaleService {
                 throw new BussinessException("Sem estoque: " + book.getTitle());
             }
             book.setStock(book.getStock() - itemDto.quantity());
-            book.setAvailable(book.getStock() > 0);
+            book.setAvailable(book.getStock() >= 0);
 
             SaleItem saleItem = new SaleItem();
             saleItem.setSale(sale);

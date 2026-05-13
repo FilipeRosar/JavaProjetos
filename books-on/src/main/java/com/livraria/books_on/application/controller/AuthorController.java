@@ -2,6 +2,7 @@ package com.livraria.books_on.application.controller;
 
 
 import com.livraria.books_on.application.service.AuthorService;
+import com.livraria.books_on.domain.dto.authorDTOs.AuthorResponseDto;
 import com.livraria.books_on.domain.dto.authorDTOs.CreateAuthorDto;
 import com.livraria.books_on.domain.entity.Author;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +24,25 @@ public class AuthorController {
     }
 
     @GetMapping("/{authorId}")
-    public ResponseEntity<Author> getAuthorById(@PathVariable UUID authorId){
+    public ResponseEntity<AuthorResponseDto> getAuthorById(@PathVariable UUID authorId){
         var id = _authorService.getAuthorById(authorId);
         return ResponseEntity.of(id);
     }
 
     @GetMapping
-    public ResponseEntity<List<Author>> getAllAuthor(){
+    public ResponseEntity<List<AuthorResponseDto>> getAllAuthor(){
         var allAuthor = _authorService.getAllAuthor();
         return ResponseEntity.ok(allAuthor);
     }
     @PostMapping
-    public ResponseEntity<Author> createAuthor(@RequestBody CreateAuthorDto dto){
+    public ResponseEntity<AuthorResponseDto> createAuthor(@RequestBody CreateAuthorDto dto){
         var authorId = _authorService.createAuthor(dto);
         return ResponseEntity.created(URI.create("v1/author/"+authorId.toString())).build();
+    }
+    @DeleteMapping("/{authorId}")
+    public ResponseEntity<Void> deleteAuthorById(@PathVariable UUID authorId){
+        _authorService.deleteAuthor(authorId);
+        return ResponseEntity.noContent().build();
     }
 
 

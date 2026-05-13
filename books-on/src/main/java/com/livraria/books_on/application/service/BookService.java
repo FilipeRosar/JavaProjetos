@@ -1,5 +1,6 @@
 package com.livraria.books_on.application.service;
 
+import com.livraria.books_on.domain.dto.BookResponseDto;
 import com.livraria.books_on.domain.dto.UpdateBookDto;
 import com.livraria.books_on.domain.dto.CreateBookDto;
 import com.livraria.books_on.domain.entity.Book;
@@ -27,7 +28,7 @@ public class BookService {
         _pushisherResitory = pushisherResitory;
         _bookResitory = bookResitory;
     }
-    @CacheEvict(value = "products", allEntries = true)
+    //@CacheEvict(value = "products", allEntries = true)
     public UUID createBook(CreateBookDto dto){
         var author = _authorResitory.findById(dto.authorId())
                 .orElseThrow(() -> new BussinessException("Autor não encontrado"));
@@ -37,7 +38,8 @@ public class BookService {
         Book book = new Book();
         book.setAuthor(author);
         book.setPublisher(publisher);
-        book.setISBN(dto.ISBN());
+        book.setISBN(dto.isbn());
+        book.setPublishedAt(dto.publishedAt());
         book.setTitle(dto.title());
         book.setPrice(dto.price());
         book.setStock(dto.stock());
@@ -46,16 +48,21 @@ public class BookService {
         return _bookResitory.save(book).getBookId();
     }
 
-    @Cacheable(value = "product", key = "#id")
-    public Optional<Book> getBookById(UUID id){
+    //@Cacheable(value = "product", key = "#id")
+    public Optional<BookResponseDto> getBookById(UUID id){
 
-        return _bookResitory.findById(id);
+        return _bookResitory.findById(id)
+                .map(this::toDto);
+
     }
-    @Cacheable(value = "products")
-    public List<Book> getAllBooks(){
+    //@Cacheable(value = "products")
+    public List<BookResponseDto> getAllBooks(){
         System.out.println("Buscando todos os livros");
 
-        return _bookResitory.findAll();
+        return _bookResitory.findAll()
+                .stream()
+                .map(this::toDto)
+                .toList();
     }
 
     public void updateBook(UUID bookId, UpdateBookDto dto){
@@ -87,6 +94,20 @@ public class BookService {
         }
         _bookResitory.deleteById(bookId);
 
+    }
+
+    private BookResponseDto toDto(Book book){
+        return new BookResponseDto(
+                book.getBookId(),
+                book.getTitle(),
+                book.getAuthor().getName(),
+                book.getPublisher().getName(),
+                book.getPublishedAt(),
+                book.getPrice(),
+                book.getStock(),
+                book.getISBN(),
+                book.isAvailable()
+        );
     }
 }
 

@@ -1,5 +1,6 @@
 package com.livraria.books_on.application.controller;
 
+import com.livraria.books_on.domain.dto.BookResponseDto;
 import com.livraria.books_on.domain.dto.CreateBookDto;
 import com.livraria.books_on.domain.dto.UpdateBookDto;
 import com.livraria.books_on.domain.entity.Book;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("v1/books")
+@RequestMapping("v1/book")
 public class BookController {
 
     @Autowired
@@ -21,21 +22,21 @@ public class BookController {
 
 
     @GetMapping("/{bookId}")
-    public ResponseEntity<Book> getBookById(@PathVariable UUID bookId) {
+    public ResponseEntity<BookResponseDto> getBookById(@PathVariable UUID bookId) {
         var id = _bookService.getBookById(bookId);
         return ResponseEntity.of(id);
     }
 
     @GetMapping
-    public ResponseEntity<List<Book>> getAllBooks() {
+    public ResponseEntity<List<BookResponseDto>> getAllBooks() {
         var books = _bookService.getAllBooks();
         return ResponseEntity.ok(books);
     }
 
     @PostMapping
-    public ResponseEntity<Book> createBooks(@RequestBody CreateBookDto dto) {
+    public ResponseEntity<BookResponseDto> createBooks(@RequestBody CreateBookDto dto) {
         var bookId = _bookService.createBook(dto);
-        return ResponseEntity.created(URI.create("v1/books/" + bookId.toString())).build();
+        return ResponseEntity.created(URI.create("v1/book/" + bookId.toString())).build();
     }
 
     @DeleteMapping("/{bookId}")

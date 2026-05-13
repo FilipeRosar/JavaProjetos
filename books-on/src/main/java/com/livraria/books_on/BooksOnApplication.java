@@ -8,13 +8,11 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import java.security.SecureRandom;
 
 @SpringBootApplication
-@EnableCaching
 public class BooksOnApplication {
 
 	public static void main(String[] args)
     {
 		SpringApplication.run(BooksOnApplication.class, args);
-
 	}
 
 }

@@ -2,6 +2,7 @@ package com.livraria.books_on.application.service;
 
 
 import com.livraria.books_on.domain.dto.publisherDTOs.CreatePublisherDTO;
+import com.livraria.books_on.domain.dto.publisherDTOs.PublisherResponseDto;
 import com.livraria.books_on.domain.entity.Publisher;
 import com.livraria.books_on.domain.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,19 @@ public class PublisherService {
         this._publisherRepository = _publisherRepository;
     }
 
-    public Optional<Publisher> getPublisher(UUID id){
-        return _publisherRepository.findById(id);
+    public Optional<PublisherResponseDto> getPublisher(UUID id){
+
+        return _publisherRepository
+                .findById(id)
+                .map(this::toDto);
     }
-    public List<Publisher> getAllPublisher(){ return _publisherRepository.findAll(); }
+
+    public List<PublisherResponseDto> getAllPublisher(){
+        return _publisherRepository.findAll()
+                .stream()
+                .map(this::toDto)
+                .toList();
+    }
 
     public UUID createPublisher(CreatePublisherDTO publisherDTO){
         Publisher publisher = new Publisher();
@@ -32,4 +42,10 @@ public class PublisherService {
         return _publisherRepository.save(publisher).getId();
     }
 
+    private PublisherResponseDto toDto(Publisher publisher){
+        return new PublisherResponseDto(
+                publisher.getId(),
+                publisher.getName()
+        );
+    }
 }

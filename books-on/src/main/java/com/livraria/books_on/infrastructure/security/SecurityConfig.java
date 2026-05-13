@@ -31,11 +31,13 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/v1/auth/**").permitAll()
-                        .requestMatchers("/v1/book/**").hasAnyRole("ADMIN","SELLER")
+                        .requestMatchers("/v1/book/**").permitAll()
                         .requestMatchers("/v3/api-docs/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
                                 "/auth/**",
+                                "/v1/user/**",
+                                "/v1/sales/**",
                                 "/v1/author/**",
                                 "/v1/publisher/**",
                                 "/book/**")

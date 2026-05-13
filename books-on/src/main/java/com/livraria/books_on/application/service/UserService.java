@@ -1,6 +1,7 @@
 package com.livraria.books_on.application.service;
 
 import com.livraria.books_on.application.dto.authDTOs.CreateUserDto;
+import com.livraria.books_on.domain.dto.userDTOs.UserResponseDto;
 import com.livraria.books_on.domain.entity.User;
 import com.livraria.books_on.domain.enume.Role;
 import com.livraria.books_on.domain.repository.UserRepository;
@@ -12,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -38,5 +41,23 @@ public class UserService {
 
         return userRepository.save(user).getId();
 
+    }
+    public Optional<UserResponseDto> getUserById(UUID id){
+        return userRepository
+                .findById(id)
+                .map(this::toDto);
+    }
+    public List<UserResponseDto> getUser(){
+        return userRepository
+                .findAll()
+                .stream()
+                .map(this::toDto)
+                .toList();
+    }
+    private UserResponseDto toDto(User user){
+        return new UserResponseDto(
+                user.getId(),
+                user.getName()
+        );
     }
 }
