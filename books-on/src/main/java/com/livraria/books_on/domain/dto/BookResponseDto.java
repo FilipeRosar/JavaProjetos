@@ -9,7 +9,7 @@ public record BookResponseDto(
         String title,
         String author,
         String publisher,
-        Date pushishedAt,
+        Date publishedAt,
         BigDecimal price,
         Integer stock,
         String isbn,

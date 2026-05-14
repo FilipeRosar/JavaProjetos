@@ -1,6 +1,6 @@
 package com.livraria.books_on.application.service;
 
-import com.livraria.books_on.application.dto.authDTOs.CreateUserDto;
+import com.livraria.books_on.domain.dto.authDTOs.CreateUserDto;
 import com.livraria.books_on.domain.dto.userDTOs.UserResponseDto;
 import com.livraria.books_on.domain.entity.User;
 import com.livraria.books_on.domain.enume.Role;
@@ -35,7 +35,7 @@ public class UserService {
         User user = new User();
         user.setName(dto.username());
         user.setEmail(dto.email());
-        user.setCpf(dto.Cpf());
+        user.setCpf(dto.cpf());
         user.setRole(Role.SELLER);
         user.setPassword(passwordEncoder.encode(dto.password()));
 

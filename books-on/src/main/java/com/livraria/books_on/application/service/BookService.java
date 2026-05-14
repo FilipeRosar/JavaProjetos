@@ -28,7 +28,7 @@ public class BookService {
         _pushisherResitory = pushisherResitory;
         _bookResitory = bookResitory;
     }
-    //@CacheEvict(value = "products", allEntries = true)
+    @CacheEvict(value = "products", allEntries = true)
     public UUID createBook(CreateBookDto dto){
         var author = _authorResitory.findById(dto.authorId())
                 .orElseThrow(() -> new BussinessException("Autor não encontrado"));
@@ -48,14 +48,14 @@ public class BookService {
         return _bookResitory.save(book).getBookId();
     }
 
-    //@Cacheable(value = "product", key = "#id")
+    @Cacheable(value = "product", key = "#id")
     public Optional<BookResponseDto> getBookById(UUID id){
 
         return _bookResitory.findById(id)
                 .map(this::toDto);
 
     }
-    //@Cacheable(value = "products")
+    @Cacheable(value = "products")
     public List<BookResponseDto> getAllBooks(){
         System.out.println("Buscando todos os livros");
 
@@ -87,7 +87,6 @@ public class BookService {
         if (bookId == null) {
             throw new BussinessException("O id não pode ser nulo");
         }
-
 
         if (!_bookResitory.existsById(bookId)) {
             throw new BussinessException("Livro não encontrado");

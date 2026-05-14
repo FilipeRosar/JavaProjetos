@@ -1,6 +1,6 @@
 package com.livraria.books_on.application.controller;
 
-import com.livraria.books_on.application.dto.authDTOs.CreateUserDto;
+import com.livraria.books_on.domain.dto.authDTOs.CreateUserDto;
 import com.livraria.books_on.domain.dto.authDTOs.AuthResponseDto;
 import com.livraria.books_on.domain.dto.authDTOs.LoginDto;
 import com.livraria.books_on.application.service.AuthService;

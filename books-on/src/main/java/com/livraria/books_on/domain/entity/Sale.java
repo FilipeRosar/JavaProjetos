@@ -1,6 +1,7 @@
 package com.livraria.books_on.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +19,10 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private Date data;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date saleDate;
+
+    @Column(precision = 19, scale = 2, nullable = false)
     private BigDecimal total;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,11 +41,11 @@ public class Sale {
     }
 
     public Date getData() {
-        return data;
+        return saleDate;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setData(Date saleDate) {
+        this.saleDate = saleDate;
     }
 
     public BigDecimal getTotal() {

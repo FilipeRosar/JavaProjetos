@@ -1,6 +1,7 @@
 package com.livraria.books_on.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Builder;
 
@@ -19,9 +20,11 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date publishedAt;
     @ManyToOne
-    @JoinColumn(name = "pushisher_id")
+    @JoinColumn(name = "publisher_id")
     private Publisher publisher;
     private BigDecimal price;
     private Integer stock;
